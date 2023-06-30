@@ -1,0 +1,53 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Roboto, Helvetica, sans-serif;
+    background-color: #262626;
+    padding-top: 175px;
+}
+
+.blinking-text {
+    text-align: center;
+    font-size: 200px;
+    color: #484848;
+    font-weight: 900;
+    display: flex; /* Pour ne pas avoir le décalage des inlines */
+    justify-content: center;
+}
+.blinking-text span {
+    position: relative;
+    display: inline-block;
+}
+.blinking-text span::after {
+    display: inline-block;
+    content: attr(data-letter);
+    position: absolute;
+    left: 0;
+    color: #fff900;
+    text-shadow: 0 0 2px #fff900, 0 0 10px #fff900;
+    opacity: 0;
+    animation: blinking 2s ease-in-out infinite;
+}
+
+@keyframes blinking {
+    0% {
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+} 
+
+
+.blinking-text span:nth-child(1)::after{animation-delay: 0s;}
+.blinking-text span:nth-child(2)::after{animation-delay: 0.1s;}
+.blinking-text span:nth-child(3)::after{animation-delay: 0.2s;}
+.blinking-text span:nth-child(4)::after{animation-delay: 0.3s;}
+
